@@ -36,10 +36,8 @@ df['target'] = df['Label'].apply(translator)
 # Feature 3: Suspicious words
 suspicious_words = ['secure', 'login', 'update', 'banking']
 def check_suspicious(url):
-    if str(url) == suspicious_words:
-       return 1
-    else:
-       return 0
+    url_lower = str(url).lower()
+    return 1 if any(word in url_lower for word in suspicious_words) else 0
 
 df['has_suspicious_words'] = df['URL'].apply(check_suspicious)
 
@@ -65,5 +63,5 @@ scannerAI.fit(X_train, y_train)
 # 7.answer X_test question
 y_pred = scannerAI.predict(X_test)
 
-print("Correct URL Accuracy:", accuracy_score(y_test, y_pred))
+print("Overall Model Accuracy:", accuracy_score(y_test, y_pred))
  
