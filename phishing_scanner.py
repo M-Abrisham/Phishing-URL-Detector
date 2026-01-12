@@ -66,8 +66,16 @@ y_pred = scannerAI.predict(X_test)
 print("Overall Model Accuracy:", accuracy_score(y_test, y_pred))
 
 model_errorCount = confusion_matrix(y_test, y_pred)
+missed_count = model_errorCount[1][0]
+if missed_count < 100:
+    risk_label = "Good"
+elif missed_count < 1000:
+    risk_label = "Medium Risk"
+else:
+    risk_label = "CRITICAL DANGER"
+
 print("\n--- Confusion Matrix ---")
-print(f"Correctly Identified Sites: {model_errorCount[0][0]}")
+print(f"Safe Sites Correctly Identified: {model_errorCount[0][0]}")
 print(f"Safe Sites Mistaken for Phishing: {model_errorCount[0][1]}")
-print(f"Phishing Sites Missed (DANGER): {model_errorCount[1][0]}")
+print(f"Phishing Sites Missed ({risk_label}): {missed_count}")
 print(f"Phishing Sites Caught: {model_errorCount[1][1]}")
