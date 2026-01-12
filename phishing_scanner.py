@@ -1,11 +1,7 @@
 import pandas as pd
-# Split data Train AI: Train (80%) + Test (20%)
+import re
 from sklearn.model_selection import train_test_split
-# create and train machine learning model for binary prediction
-from sklearn.linear_model import LogisticRegression
-#evaluate the accuracy machine learning model
 from sklearn.metrics import accuracy_score, confusion_matrix
-# Improve the Accuracy 
 from sklearn.ensemble import RandomForestClassifier  
 
 def translator(Label):
@@ -47,7 +43,7 @@ df['at_count'] = df['URL'].apply(lambda x: str(x).count('@'))
 df['slash_count'] = df['URL'].apply(lambda x: str(x).count('/'))
 
 # Feature 5: Has IP address
-import re
+
 def has_ip_address(url):
     ip_pattern = r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
     return 1 if re.search(ip_pattern, str(url)) else 0
@@ -85,7 +81,7 @@ y = df['target']
 # dataset Splitter
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-print("Training-data dimensions(Rows, Columns):", X_train.shape)
+print("Training-data dimensions(Row, Column):", X_train.shape)
 print("Test-data dimensions(Rows, Columns):", X_test.shape)
 
 #6. 
@@ -116,3 +112,26 @@ print(f"Sites Caught: {model_errorCount[1][1]}")
 print("\n--- AI Clue Rankings ---")
 for feature, score in zip(X.columns, scannerAI.feature_importances_):
     print(f"{feature}: {score:.4f}")
+
+# 9. Live Test 
+test_url = input("Enter Suspicious URL:")
+test_data = pd.DataFrame({
+'url_length': [len(test_url)],
+    'dot_count': [str(test_url).count('.')],
+    'has_suspicious_words': [check_suspicious(test_url)],  
+    'dash_count' : [str(test_url).count('-')],
+    'at_count' : [str(test_url).count('@')],
+    'slash_count' : [str(test_url).count('/')],
+    'has_ip': [has_ip_address(test_url)],
+    'is_https': [1 if test_url.lower().startswith('https') else 0],
+    'subdomain_count': [count_subdomains(test_url)],
+    'risky_tld': [has_risky_tld(test_url)],
+    'digit_count': [sum(c.isdigit() for c in test_url)]
+
+})
+prediction = scannerAI.predict(test_data)
+if prediction [0] == 1:
+    print(" ALERT >> PHISHING URL! ")
+else:
+    print("SUCCESS: This URL is Safe.")
+    
