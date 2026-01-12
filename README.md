@@ -1,31 +1,27 @@
-# 🎣 Phishing URL Detector
+# Phishing URL Detector
 
-> 🛡️ A Machine Learning-powered scanner to detect phishing URLs and keep you safe online.
-
-[![Python](https://img.shields.io/badge/Python-3.7+-blue?logo=python&logoColor=white)](https://python.org)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+> A Machine Learning-powered scanner to detect phishing URLs and keep you safe online.
 
 ---
 
-## 📖 Overview
+## Overview
 
 This detector uses a **RandomForestClassifier** model trained on the [Kaggle Phishing URL Dataset](https://www.kaggle.com/datasets/shashwatwork/web-page-phishing-detection-dataset) to identify malicious URLs with **85.7% accuracy**.
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Description |
 |---------|-------------|
-| 🔍 **URL Analysis** | Extracts 11 key features from URLs |
-| 🤖 **ML Classification** | RandomForest model for accurate detection |
-| ⚡ **Real-time Scanning** | Instantly check suspicious URLs |
-| 📊 **Feature Importance** | Understand what makes a URL suspicious |
+| **URL Analysis** | Extracts 11 key features from URLs |
+| **ML Classification** | RandomForest model for accurate detection |
+| **Real-time Scanning** | Instantly check suspicious URLs |
+| **Feature Importance** | Understand what makes a URL suspicious |
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -40,7 +36,7 @@ python phishing_scanner.py
 
 ---
 
-## 🔬 How It Works
+## How It Works
 
 The model extracts these features from each URL:
 
@@ -60,41 +56,41 @@ The model extracts these features from each URL:
 
 ---
 
-## 📊 Model Performance
+## Model Performance
 
 ```
-📈 Dataset Size: 549,346 URLs
+Dataset Size: 549,346 URLs
 ├── Training: 439,476 samples
 └── Testing:  109,870 samples
 
-🎯 Overall Accuracy: 85.66%
+Overall Accuracy: 85.66%
 ```
 
 ### Confusion Matrix
 
 | | Predicted Safe | Predicted Phishing |
 |---|:---:|:---:|
-| **Actually Safe** | ✅ 69,521 | ⚠️ 9,064 |
-| **Actually Phishing** | ❌ 6,694 | 🎯 24,591 |
+| **Actually Safe** | 69,521 | 9,064 |
+| **Actually Phishing** | 6,694 | 24,591 |
 
 ---
 
-## 💻 Example Usage
+## Example Usage
 
 ```
 Enter Suspicious URL: http://google.com.cust_login.ie
 
-🚨 ALERT >> PHISHING URL DETECTED!
+ALERT >> PHISHING URL DETECTED!
 ```
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This tool is for educational purposes. While it achieves good accuracy, no detection system is 100% reliable. Always exercise caution with unfamiliar URLs.
 
 ---
 
-## 📄 License
+## License
 
 MIT License - feel free to use and modify!
