@@ -1,98 +1,100 @@
-# Phishing-URL-Detector
-Machine Learning scanner to detect phishing URLs
+# 🎣 Phishing URL Detector
 
-This detector is using the RandomForestClassifier model trained against the Kaggle phishing URL dataset.
+> 🛡️ A Machine Learning-powered scanner to detect phishing URLs and keep you safe online.
 
-Example output:
+[![Python](https://img.shields.io/badge/Python-3.7+-blue?logo=python&logoColor=white)](https://python.org)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-Loading data... 
+---
 
---- First 5 Rows ---
+## 📖 Overview
 
-URL Label
-                                                 
-0  nobell.it/70ffb52d079109dca5664cce6f317373782/...   bad
+This detector uses a **RandomForestClassifier** model trained on the [Kaggle Phishing URL Dataset](https://www.kaggle.com/datasets/shashwatwork/web-page-phishing-detection-dataset) to identify malicious URLs with **85.7% accuracy**.
 
-1  www.dghjdgf.com/paypal.co.uk/cycgi-bin/webscrc...   bad
+---
 
-2  serviciosbys.com/paypal.cgi.bin.get-into.herf....   bad
+## ✨ Features
 
-3  mail.printakid.com/www.online.americanexpress....   bad
+| Feature | Description |
+|---------|-------------|
+| 🔍 **URL Analysis** | Extracts 11 key features from URLs |
+| 🤖 **ML Classification** | RandomForest model for accurate detection |
+| ⚡ **Real-time Scanning** | Instantly check suspicious URLs |
+| 📊 **Feature Importance** | Understand what makes a URL suspicious |
 
-4  thewhiskeydregs.com/wp-content/themes/widescre...   bad
+---
 
+## 🚀 Quick Start
 
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/AI-Based-URL-phishing-detection.git
 
+# Install dependencies
+pip install -r requirements.txt
 
---- Extracting Features ---
+# Run the scanner
+python phishing_scanner.py
+```
 
-URL  url_length  dot_count  has_suspicious_words Label
+---
 
-0  nobell.it/70ffb52d079109dca5664cce6f317373782/...         225          6                     1   bad
+## 🔬 How It Works
 
-1  www.dghjdgf.com/paypal.co.uk/cycgi-bin/webscrc...          81          5                     0   bad
+The model extracts these features from each URL:
 
-2  serviciosbys.com/paypal.cgi.bin.get-into.herf....         177          7                     1   bad
+| Feature | Importance | Description |
+|---------|------------|-------------|
+| `digit_count` | 22.88% | Number of digits in URL |
+| `url_length` | 22.68% | Total length of URL |
+| `slash_count` | 13.57% | Number of `/` characters |
+| `has_suspicious_words` | 11.45% | Contains words like "login", "secure" |
+| `dot_count` | 10.69% | Number of `.` characters |
+| `dash_count` | 9.37% | Number of `-` characters |
+| `subdomain_count` | 5.31% | Number of subdomains |
+| `has_ip` | 1.98% | URL contains IP address |
+| `risky_tld` | 1.71% | Uses suspicious TLD |
+| `at_count` | 0.35% | Number of `@` characters |
+| `is_https` | 0.00% | Uses HTTPS protocol |
 
-3  mail.printakid.com/www.online.americanexpress....          60          6                     0   bad
+---
 
-4  thewhiskeydregs.com/wp-content/themes/widescre...         116          1                     0   bad
+## 📊 Model Performance
 
+```
+📈 Dataset Size: 549,346 URLs
+├── Training: 439,476 samples
+└── Testing:  109,870 samples
 
-  Label  target
+🎯 Overall Accuracy: 85.66%
+```
 
-0   bad       1
+### Confusion Matrix
 
-1   bad       1
+| | Predicted Safe | Predicted Phishing |
+|---|:---:|:---:|
+| **Actually Safe** | ✅ 69,521 | ⚠️ 9,064 |
+| **Actually Phishing** | ❌ 6,694 | 🎯 24,591 |
 
-2   bad       1
+---
 
-3   bad       1
+## 💻 Example Usage
 
-4   bad       1
+```
+Enter Suspicious URL: http://google.com.cust_login.ie
 
-Training-data dimensions(Row, Column): (439476, 11)
+🚨 ALERT >> PHISHING URL DETECTED!
+```
 
-Test-data dimensions(Rows, Columns): (109870, 11)
+---
 
-Overall Model Accuracy: 0.8565759533994721
+## ⚠️ Disclaimer
 
---- Confusion Matrix ---
+This tool is for educational purposes. While it achieves good accuracy, no detection system is 100% reliable. Always exercise caution with unfamiliar URLs.
 
-Safe Sites: 69521
+---
 
-Mistaken: 9064
+## 📄 License
 
-Missing Sites (CRITICAL DANGER): 6694
-
-Sites Caught: 24591
-
---- AI Clue Rankings ---
-
-url_length: 0.2268
-
-dot_count: 0.1069
-
-has_suspicious_words: 0.1145
-
-dash_count: 0.0937
-
-at_count: 0.0035
-
-slash_count: 0.1357
-
-has_ip: 0.0198
-
-is_https: 0.0000
-
-subdomain_count: 0.0531
-
-risky_tld: 0.0171
-
-digit_count: 0.2288
-
-Enter Suspicious URL:http://google.com.cust_login.ie
-
-**
- ALERT >> PHISHING URL! 
-**
+MIT License - feel free to use and modify!

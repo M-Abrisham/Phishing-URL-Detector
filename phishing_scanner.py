@@ -12,8 +12,7 @@ def translator(Label):
 
 # Pull Dataset
 print("Loading data... ")
-df = pd.read_csv('phishing_site_urls.csv')
-print("\n--- First 5 Rows ---") # sanity check
+df = pd.read_csv('training_data/phishing_site_urls.csv')
 print(df.head())
 print("\n--- Extracting Features ---")
 
